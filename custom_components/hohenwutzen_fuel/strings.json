@@ -1,0 +1,14 @@
+{
+  "title": "Tankpreise Hohenwutzen",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Tankpreise Hohenwutzen",
+        "description": "Fetch Super E10, Super Plus and Diesel prices from Polenmarkt Hohenwutzen every 5 minutes. No API key required."
+      }
+    },
+    "abort": {
+      "already_configured": "This station is already configured."
+    }
+  }
+}

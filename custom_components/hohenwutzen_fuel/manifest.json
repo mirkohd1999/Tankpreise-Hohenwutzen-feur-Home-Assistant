@@ -1,0 +1,11 @@
+{
+  "domain": "hohenwutzen_fuel",
+  "name": "Tankpreise Hohenwutzen",
+  "version": "1.0.1",
+  "config_flow": true,
+  "documentation": "https://www.hohenwutzen.de/tanken/",
+  "iot_class": "cloud_polling",
+  "integration_type": "service",
+  "requirements": [],
+  "codeowners": []
+}

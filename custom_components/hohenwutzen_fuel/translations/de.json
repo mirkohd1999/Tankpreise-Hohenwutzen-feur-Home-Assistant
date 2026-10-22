@@ -1,0 +1,14 @@
+{
+  "title": "Tankpreise Hohenwutzen",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Tankpreise Hohenwutzen",
+        "description": "Automatischer Abruf der Preise für Super E10, Super Plus und Diesel von der Tankstelle am Polenmarkt Hohenwutzen. Abfrage alle 5 Minuten. Kein API-Schlüssel nötig."
+      }
+    },
+    "abort": {
+      "already_configured": "Diese Tankstelle ist bereits eingerichtet."
+    }
+  }
+}
