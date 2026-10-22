@@ -1,11 +1,14 @@
 {
   "domain": "hohenwutzen_fuel",
   "name": "Tankpreise Hohenwutzen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "config_flow": true,
-  "documentation": "https://www.hohenwutzen.de/tanken/",
+  "documentation": "https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant",
   "iot_class": "cloud_polling",
   "integration_type": "service",
   "requirements": [],
-  "codeowners": []
+  "codeowners": [
+    "@mirkohd1999"
+  ],
+  "issue_tracker": "https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant/issues"
 }

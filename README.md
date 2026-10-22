@@ -11,7 +11,7 @@ Die Integration liest die veröffentlichten Preise von hohenwutzen.de aus und fr
 - Einrichtung über die Home-Assistant-Oberfläche
 - Kein API-Schlüssel erforderlich
 - Sensoren für Dashboards und eigene Automationen nutzbar
-- Kein API-Schlüssel, kein Konto und keine zusätzlichen Python-Pakete erforderlich. Die Integration wird manuell installiert; dieses ZIP ist kein bereits veröffentlichtes HACS-Repository.
+- Kein Konto und keine zusätzlichen Python-Pakete erforderlich.
 
 | Sensor | Einheit / Inhalt |
 |---|---|
@@ -20,7 +20,17 @@ Die Integration liest die veröffentlichten Preise von hohenwutzen.de aus und fr
 | Diesel | EUR/L |
 | Letzter erfolgreicher Abruf | Zeitstempel, als Diagnoseentität |
 
-## Installation
+## Installation über HACS
+
+1. In HACS das Menü **Benutzerdefinierte Repositories** öffnen.
+2. Als Repository `https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant` eintragen und als Typ **Integration** auswählen.
+3. **Tankpreise Hohenwutzen** suchen und herunterladen. Ohne veröffentlichte Releases die aktuelle Standardbranch `main` auswählen.
+4. Home Assistant neu starten.
+5. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **Tankpreise Hohenwutzen** suchen und bestätigen.
+
+Bei einer früheren HACS-Fehlermeldung die Repository-Informationen in HACS erneut laden und den aktuellen Stand herunterladen. Der alte Commit `26771f6` enthält noch keine HACS-Metadaten.
+
+## Manuelle Installation
 
 1. Repository herunterladen und entpacken.
 2. Den Ordner custom_components/hohenwutzen_fuel nach /config/custom_components/ kopieren.
@@ -36,9 +46,9 @@ Bei Abruf- oder Auswertungsfehlern werden die Sensoren als nicht verfügbar ange
 
 ## Entwicklungsstand
 
-Version 1.0.1 – experimentell.
+Version 1.0.2 – experimentell.
 
-Sechs Offline-Tests für die Preisauswertung bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Eine HACS-Installation wird derzeit nicht angeboten.
+Sechs Offline-Tests für die Preisauswertung bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
 
 Dieses Projekt ist eine unabhängige Community-Entwicklung und steht in keiner offiziellen Verbindung zum Tankstellenbetreiber.
 
