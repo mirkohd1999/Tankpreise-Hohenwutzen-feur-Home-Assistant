@@ -3,6 +3,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass, Bina
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import DOMAIN, NAME, SOURCE_URL
+from .display import NAMES
 
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -13,13 +14,13 @@ class StationOpenSensor(CoordinatorEntity, BinarySensorEntity):
     """Open/closed according to the station section of the operator website."""
 
     _attr_has_entity_name = True
-    _attr_name = "Tankstelle"
     _attr_icon = "mdi:store"
     _attr_device_class = BinarySensorDeviceClass.OPENING
     _attr_unique_id = f"{DOMAIN}_station_open"
 
     def __init__(self, coordinator):
         super().__init__(coordinator)
+        self._attr_name = NAMES[coordinator.profile]["station_open"]
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, "polenmarkt")}, name=NAME,
             configuration_url=SOURCE_URL,

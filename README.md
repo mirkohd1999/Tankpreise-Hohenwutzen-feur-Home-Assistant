@@ -48,9 +48,9 @@ Bei Abruf- oder Auswertungsfehlern werden die Sensoren als nicht verfügbar ange
 
 ## Entwicklungsstand
 
-Version 1.0.5 – experimentell.
+Version 1.1.0 – experimentell.
 
-15 Offline-Tests für Preisauswertung und Öffnungsstatus bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
+30 Offline-Tests für Preise, Öffnungsstatus, Anzeigeprofile, Kursumrechnung und Kursabrufe bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
 
 Dieses Projekt ist eine unabhängige Community-Entwicklung und steht in keiner offiziellen Verbindung zum Tankstellenbetreiber.
 
@@ -75,3 +75,24 @@ Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
 ## Automatische Prüfungen
 
 Der Workflow **Validate** führt HACS Validation ohne deaktivierte Prüfungen, Hassfest und die Offline-Tests bei Pushes und Pull Requests aus. Die Aufnahme in den offiziellen HACS-Katalog ist erst nach erfolgreichen Prüfungen, einem anschließenden Release und der Freigabe durch das HACS-Team abgeschlossen. Bis dahin wird das Repository als benutzerdefiniertes Repository hinzugefügt.
+
+## Deutsch / Euro oder Polski / Złoty
+
+Ab Version 1.1.0 wird bei der Einrichtung das Profil gewählt:
+
+| Auswahl | Sensornamen | Preise |
+|---|---|---|
+| Deutsch → Euro (€) | Deutsch | EUR/L, Originalpreis der Betreiberseite |
+| Polski → Złoty (zł) | Polnisch | PLN/L, aus dem Europreis umgerechnet |
+
+Bestehende Installationen bleiben automatisch bei Deutsch / EUR. Unter **Einstellungen → Geräte & Dienste → Tankpreise Hohenwutzen → Konfigurieren** kann das Profil geändert werden. Die Integration lädt sich danach neu; sie muss nicht gelöscht werden. Die Sprache der Home-Assistant-Oberfläche und die Übersetzung von Geöffnet/Geschlossen richten sich weiterhin nach der Sprache im persönlichen Home-Assistant-Profil. Für die Einrichtungs- und Optionsdialoge sind Deutsch, Polnisch und Englisch enthalten.
+
+Der PLN-Wert berechnet sich aus **Europreis × PLN pro EUR**. Der Referenzkurs kommt aus Tabelle A der [polnischen Nationalbank NBP](https://api.nbp.pl/en.html) und wird bei gewähltem PLN-Profil stündlich abgerufen; die Kraftstoffpreise werden weiterhin alle fünf Minuten aktualisiert. Die NBP liefert den zuletzt veröffentlichten Kurs, keinen Echtzeit-Devisenkurs. Insbesondere an Wochenenden oder Feiertagen kann das Kursdatum älter sein. PLN/L wird auf zwei Dezimalstellen gerundet.
+
+In den Attributen der PLN-Preissensoren stehen `original_price_eur`, `pln_per_eur`, `exchange_rate_date`, `exchange_rate_source` und `converted: true`. Es handelt sich um einen rechnerischen Vergleichswert, nicht um einen von der Tankstelle veröffentlichten Złoty-Zahlpreis oder deren eigenen Umrechnungskurs.
+
+Kann der NBP-Kurs beim ersten Abruf oder der nächsten stündlichen Aktualisierung nicht geladen werden, werden nur die PLN-Preise nicht verfügbar. Es gibt keinen erfundenen Ersatzkurs und keinen stillen Rückfall auf EUR. Öffnungsstatus und Zeitstempel bleiben bei erfolgreichem Webseitenabruf nutzbar; der Kursabruf wird bei der nächsten Fünf-Minuten-Abfrage erneut versucht. Im EUR-Profil erfolgt kein NBP-Abruf.
+
+PLN-Preissensoren erhalten eigene eindeutige IDs mit dem Suffix `_pln`. Die bisherigen EUR-IDs bleiben erhalten. Nach einem Währungswechsel müssen die neuen Preissensoren einmal im Dashboard bzw. in Automationen ausgewählt werden; die bisherigen Preisentitäten können als nicht verfügbar bestehen bleiben. Beim Zurückwechseln auf EUR werden die ursprünglichen Sensoren wiederverwendet. Dadurch werden die Preisverläufe unterschiedlicher Währungen nicht vermischt.
+
+Für Version 1.1.0 wird Home Assistant ab 2025.12.0 benötigt (OptionsFlowWithReload). Der Betrieb in einer echten Home-Assistant-Instanz bleibt noch praktisch zu prüfen.

@@ -4,11 +4,25 @@
     "step": {
       "user": {
         "title": "Tankpreise Hohenwutzen",
-        "description": "Fetch Super E10, Super Plus and Diesel prices from Polenmarkt Hohenwutzen every 5 minutes. No API key required."
+        "description": "Choose Deutsch / Euro or Polski / Złoty. PLN prices are converted from EUR using the latest published NBP reference rate.",
+        "data": {
+          "display_profile": "Language and currency"
+        }
       }
     },
     "abort": {
       "already_configured": "This station is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tankpreise Hohenwutzen",
+        "description": "Choose Deutsch / Euro or Polski / Złoty. PLN prices are converted from EUR using the latest published NBP reference rate.",
+        "data": {
+          "display_profile": "Language and currency"
+        }
+      }
     }
   }
 }
