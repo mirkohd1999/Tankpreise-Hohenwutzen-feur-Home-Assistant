@@ -48,9 +48,9 @@ Bei Abruf- oder Auswertungsfehlern werden die Sensoren als nicht verfügbar ange
 
 ## Entwicklungsstand
 
-Version 1.0.4 – experimentell.
+Version 1.0.5 – experimentell.
 
-Sechs Offline-Tests für die Preisauswertung bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
+15 Offline-Tests für Preisauswertung und Öffnungsstatus bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
 
 Dieses Projekt ist eine unabhängige Community-Entwicklung und steht in keiner offiziellen Verbindung zum Tankstellenbetreiber.
 
@@ -67,3 +67,11 @@ Der Sensor zeigt **keinen direkt gemessenen Live-Betriebsstatus**. Kurzfristige 
 Prüfung der Erweiterung: Offline-Tests für Öffnung, Schließung, unbekannte und widersprüchliche Angaben sowie die vorhandenen Preistests. Kein Live-Test in Home Assistant.
 
 Der binäre Sensor **Tankstelle** verwendet das Ladensymbol `mdi:store` für beide Zustände. Die Anzeige **Geöffnet/Geschlossen** bleibt erhalten. Die Symbolfarbe bestimmt das Home-Assistant-Theme bzw. die Dashboard-Karte.
+
+## Lizenz
+
+Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
+
+## Automatische Prüfungen
+
+Der Workflow **Validate** führt HACS Validation ohne deaktivierte Prüfungen, Hassfest und die Offline-Tests bei Pushes und Pull Requests aus. Die Aufnahme in den offiziellen HACS-Katalog ist erst nach erfolgreichen Prüfungen, einem anschließenden Release und der Freigabe durch das HACS-Team abgeschlossen. Bis dahin wird das Repository als benutzerdefiniertes Repository hinzugefügt.
