@@ -7,7 +7,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.util import dt as dt_util
 from .const import NAME, SOURCE_URL, UPDATE_MINUTES
-from .display import selected_profile, currency_for
+from .display import selected_display
 from .exchange import NBP_URL, parse_exchange_rate
 from .parser import parse_prices, parse_station_open, PriceParseError
 
@@ -19,8 +19,7 @@ class FuelCoordinator(DataUpdateCoordinator):
         super().__init__(hass, _LOGGER, name=NAME, config_entry=entry,
                          update_interval=timedelta(minutes=UPDATE_MINUTES))
         self.session = async_get_clientsession(hass)
-        self.profile = selected_profile(entry.data, entry.options)
-        self.currency = currency_for(self.profile)
+        self.language, self.currency = selected_display(entry.data, entry.options)
         self._exchange_rate = None
         self._exchange_fetched_at = None
         self._exchange_error = False

@@ -33,7 +33,7 @@ class FuelSensor(BaseSensor):
 
     def __init__(self, coordinator, key):
         super().__init__(coordinator, price_unique_key(key, coordinator.currency),
-                         NAMES[coordinator.profile][key])
+                         NAMES[coordinator.language][key])
         self.key = key
         self._attr_native_unit_of_measurement = f"{coordinator.currency}/L"
 
@@ -67,7 +67,9 @@ class FuelSensor(BaseSensor):
                           "exchange_rate_source": NBP_URL,
                           "pln_per_eur": quote.pln_per_eur if quote else None,
                           "exchange_rate_date": quote.effective_date if quote else None,
-                          "note": "Przeliczenie według średniego kursu NBP; nie jest to cena stacji w PLN."})
+                          "note": ("Umrechnung zum NBP-Mittelkurs; kein PLN-Zahlpreis der Tankstelle."
+                                   if self.coordinator.language == "de" else
+                                   "Przeliczenie według średniego kursu NBP; nie jest to cena stacji w PLN.")})
         else:
             # Preserve the original German attributes for existing automations.
             attrs.update({"quelle": SOURCE_URL,
@@ -81,7 +83,7 @@ class FetchTimestamp(BaseSensor):
     _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(self, coordinator):
-        super().__init__(coordinator, "last_fetch", NAMES[coordinator.profile]["last_fetch"])
+        super().__init__(coordinator, "last_fetch", NAMES[coordinator.language]["last_fetch"])
 
     @property
     def native_value(self):

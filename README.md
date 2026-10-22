@@ -29,7 +29,7 @@ Alle Sensoren lassen sich in Dashboards und Automationen verwenden. Zusätzliche
 
 3. **Tankpreise Hohenwutzen** suchen und die neueste veröffentlichte Version herunterladen.
 4. Home Assistant neu starten.
-5. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **Tankpreise Hohenwutzen** suchen und das gewünschte Profil wählen.
+5. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **Tankpreise Hohenwutzen** suchen und Sprache und Währung wählen.
 
 ### Manuell
 
@@ -39,14 +39,16 @@ Den Ordner `custom_components/hohenwutzen_fuel` aus dem Repository nach `/config
 
 ## Sprache und Währung
 
-Ab Version **1.1.0** stehen zwei Profile zur Auswahl:
+Ab Version **1.2.0** lassen sich Sprache und Währung unabhängig auswählen:
 
-| Profil | Sensornamen | Preise |
-|---|---|---|
-| Deutsch → Euro (€) | Deutsch | Originalpreise in EUR/L |
-| Polski → Złoty (zł) | Polnisch | Umgerechnete Preise in PLN/L |
+| Einstellung | Auswahl |
+|---|---|
+| Sprache der Sensoren | Deutsch oder Polski |
+| Preiswährung | Euro (EUR/L) oder Złoty (PLN/L) |
 
-**Umstellen:** Einstellungen → Geräte & Dienste → Tankpreise Hohenwutzen → **Konfigurieren**. Nach dem Speichern lädt die Integration automatisch neu. Bestehende Installationen bleiben zunächst bei Deutsch/Euro.
+Alle vier Kombinationen sind möglich, zum Beispiel deutsche Sensornamen mit Złoty-Preisen oder polnische Sensornamen mit Europreisen.
+
+**Umstellen:** Einstellungen → Geräte & Dienste → Tankpreise Hohenwutzen → **Konfigurieren**. Nach dem Speichern lädt die Integration automatisch neu. Die bisherige Auswahl aus Version 1.1.0 wird automatisch übernommen; ältere Installationen bleiben bei Deutsch/Euro. Eine Änderung nur der Sprache behält dieselben Preisentitäten und Verläufe.
 
 EUR und PLN verwenden getrennte Preisentitäten, damit ihre Verläufe nicht vermischt werden. Nach einem Wechsel die neuen Sensoren im Dashboard und in Automationen auswählen. Alte Preisentitäten können als nicht verfügbar bestehen bleiben; beim Zurückwechseln auf EUR werden die bisherigen Sensoren wiederverwendet.
 
@@ -72,8 +74,9 @@ Der Status beruht auf der Webseite; dort nicht veröffentlichte kurzfristige Sch
 
 ## Projektstatus und Hilfe
 
-**Version 1.1.0:** HACS Validation, Hassfest und 30 Offline-Tests für die Erweiterung bestanden. Der Betrieb und die Profilumstellung in Home Assistant wurden vom Nutzer als funktionierend zurückgemeldet; eine umfassende Prüfung verschiedener Installationen steht aus.
+**Version 1.2.0:** Getrennte Auswahl von Sprache und Währung mit automatischer Übernahme bisheriger Einstellungen. Offline-Tests prüfen alle vier Kombinationen, Sensornamen, Währungswerte und stabile Entitäts-IDs. Der Betrieb von Version 1.1.0 wurde vom Nutzer als funktionierend zurückgemeldet; die getrennte Auswahl aus 1.2.0 ist noch nicht in einer echten Home-Assistant-Installation geprüft.
 
 Fehler oder Ideen? Bitte ein [GitHub Issue](https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant/issues) erstellen.
 
 Unabhängiges Community-Projekt ohne offizielle Verbindung zum Tankstellenbetreiber. Veröffentlicht unter der [MIT-Lizenz](LICENSE).
+

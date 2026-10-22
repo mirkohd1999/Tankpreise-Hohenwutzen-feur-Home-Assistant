@@ -4,9 +4,10 @@
     "step": {
       "user": {
         "title": "Tankpreise Hohenwutzen",
-        "description": "Wähle Deutsch / Euro oder Polski / Złoty. PLN-Preise werden aus EUR mit dem zuletzt veröffentlichten NBP-Referenzkurs umgerechnet.",
+        "description": "Wähle die Sprache der Sensoren und die Preiswährung unabhängig voneinander. PLN-Preise verwenden den zuletzt veröffentlichten NBP-Referenzkurs.",
         "data": {
-          "display_profile": "Sprache und Währung"
+          "language": "Sprache der Sensoren",
+          "currency": "Preiswährung"
         }
       }
     },
@@ -18,9 +19,10 @@
     "step": {
       "init": {
         "title": "Tankpreise Hohenwutzen",
-        "description": "Wähle Deutsch / Euro oder Polski / Złoty. PLN-Preise werden aus EUR mit dem zuletzt veröffentlichten NBP-Referenzkurs umgerechnet.",
+        "description": "Wähle die Sprache der Sensoren und die Preiswährung unabhängig voneinander. PLN-Preise verwenden den zuletzt veröffentlichten NBP-Referenzkurs.",
         "data": {
-          "display_profile": "Sprache und Währung"
+          "language": "Sprache der Sensoren",
+          "currency": "Preiswährung"
         }
       }
     }

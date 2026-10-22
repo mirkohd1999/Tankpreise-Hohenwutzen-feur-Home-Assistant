@@ -20,7 +20,7 @@ class StationOpenSensor(CoordinatorEntity, BinarySensorEntity):
 
     def __init__(self, coordinator):
         super().__init__(coordinator)
-        self._attr_name = NAMES[coordinator.profile]["station_open"]
+        self._attr_name = NAMES[coordinator.language]["station_open"]
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, "polenmarkt")}, name=NAME,
             configuration_url=SOURCE_URL,
