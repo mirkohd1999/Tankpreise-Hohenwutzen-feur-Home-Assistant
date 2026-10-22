@@ -48,7 +48,7 @@ Bei Abruf- oder Auswertungsfehlern werden die Sensoren als nicht verfügbar ange
 
 ## Entwicklungsstand
 
-Version 1.0.3 – experimentell.
+Version 1.0.4 – experimentell.
 
 Sechs Offline-Tests für die Preisauswertung bestanden. Der Live-Abruf und der Betrieb in einer echten Home-Assistant-Instanz sind noch nicht verifiziert. Die Repository-Metadaten sind für die Installation als benutzerdefiniertes HACS-Repository vorbereitet. Ein Installationstest in HACS steht noch aus.
 
@@ -65,3 +65,5 @@ Ausgewertet wird nur der Abschnitt **Tankstelle** auf der Betreiberseite. Aktuel
 Der Sensor zeigt **keinen direkt gemessenen Live-Betriebsstatus**. Kurzfristige Schließungen, die nicht auf der Seite stehen, sind nicht erkennbar. Fehlen eindeutige Angaben, werden widersprüchliche Angaben erkannt oder misslingt der Abruf, ist der Status **nicht verfügbar** statt fälschlich „Geschlossen“. Andere Zeitpläne als die ausdrücklich erkannten Angaben werden nicht geraten. Die vorhandene Preisabfrage muss weiterhin erfolgreich sein.
 
 Prüfung der Erweiterung: Offline-Tests für Öffnung, Schließung, unbekannte und widersprüchliche Angaben sowie die vorhandenen Preistests. Kein Live-Test in Home Assistant.
+
+Der binäre Sensor **Tankstelle** verwendet das Ladensymbol `mdi:store` für beide Zustände. Die Anzeige **Geöffnet/Geschlossen** bleibt erhalten. Die Symbolfarbe bestimmt das Home-Assistant-Theme bzw. die Dashboard-Karte.
