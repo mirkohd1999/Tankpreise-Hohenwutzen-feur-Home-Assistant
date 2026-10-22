@@ -14,6 +14,7 @@ class StationOpenSensor(CoordinatorEntity, BinarySensorEntity):
 
     _attr_has_entity_name = True
     _attr_name = "Tankstelle"
+    _attr_icon = "mdi:store"
     _attr_device_class = BinarySensorDeviceClass.OPENING
     _attr_unique_id = f"{DOMAIN}_station_open"
 
