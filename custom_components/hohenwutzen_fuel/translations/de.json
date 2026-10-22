@@ -4,11 +4,25 @@
     "step": {
       "user": {
         "title": "Tankpreise Hohenwutzen",
-        "description": "Automatischer Abruf der Preise für Super E10, Super Plus und Diesel von der Tankstelle am Polenmarkt Hohenwutzen. Abfrage alle 5 Minuten. Kein API-Schlüssel nötig."
+        "description": "Wähle Deutsch / Euro oder Polski / Złoty. PLN-Preise werden aus EUR mit dem zuletzt veröffentlichten NBP-Referenzkurs umgerechnet.",
+        "data": {
+          "display_profile": "Sprache und Währung"
+        }
       }
     },
     "abort": {
       "already_configured": "Diese Tankstelle ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tankpreise Hohenwutzen",
+        "description": "Wähle Deutsch / Euro oder Polski / Złoty. PLN-Preise werden aus EUR mit dem zuletzt veröffentlichten NBP-Referenzkurs umgerechnet.",
+        "data": {
+          "display_profile": "Sprache und Währung"
+        }
+      }
     }
   }
 }
