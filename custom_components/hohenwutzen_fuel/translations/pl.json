@@ -4,9 +4,10 @@
     "step": {
       "user": {
         "title": "Ceny paliw Hohenwutzen",
-        "description": "Wybierz Deutsch / Euro lub Polski / Złoty. Ceny w PLN są przeliczane z EUR według ostatniego opublikowanego średniego kursu NBP.",
+        "description": "Wybierz niezależnie język czujników i walutę cen. Ceny w PLN są przeliczane według ostatniego opublikowanego średniego kursu NBP.",
         "data": {
-          "display_profile": "Język i waluta"
+          "language": "Język czujników",
+          "currency": "Waluta cen"
         }
       }
     },
@@ -18,9 +19,10 @@
     "step": {
       "init": {
         "title": "Ceny paliw Hohenwutzen",
-        "description": "Wybierz Deutsch / Euro lub Polski / Złoty. Ceny w PLN są przeliczane z EUR według ostatniego opublikowanego średniego kursu NBP.",
+        "description": "Wybierz niezależnie język czujników i walutę cen. Ceny w PLN są przeliczane według ostatniego opublikowanego średniego kursu NBP.",
         "data": {
-          "display_profile": "Język i waluta"
+          "language": "Język czujników",
+          "currency": "Waluta cen"
         }
       }
     }

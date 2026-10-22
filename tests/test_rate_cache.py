@@ -105,6 +105,22 @@ class RateCacheTests(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(data['exchange_rate'])
         self.assertEqual(data['prices']['diesel'], 1.83)
 
+    async def test_language_does_not_select_currency_or_nbp_requests(self):
+        for language in ('de', 'pl'):
+            for currency in ('EUR', 'PLN'):
+                with self.subTest(language=language, currency=currency):
+                    c = self.cls(None, SimpleNamespace(
+                        data={'display_profile': 'pl_pln'},
+                        options={'language': language, 'currency': currency}))
+                    self.session.urls = []
+                    self.session.responses = [Response(html=HTML)]
+                    if currency == 'PLN':
+                        self.session.responses.append(Response(payload=quote()))
+                    data = await c._async_update_data()
+                    self.assertEqual((c.language, c.currency), (language, currency))
+                    self.assertEqual(len(self.session.urls), 2 if currency == 'PLN' else 1)
+                    self.assertEqual(data['exchange_rate'] is not None, currency == 'PLN')
+
     async def test_cache_and_hourly_refresh(self):
         c = self.coordinator()
         self.session.responses = [Response(payload=quote()), Response(payload=quote(4.30))]

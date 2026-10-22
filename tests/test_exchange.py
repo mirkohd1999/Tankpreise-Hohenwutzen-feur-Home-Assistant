@@ -54,22 +54,49 @@ class ExchangeTests(unittest.TestCase):
             with self.subTest(rate=rate), self.assertRaises(exchange.ExchangeRateError):
                 exchange.convert_price(1.52, rate)
 
-    def test_existing_entries_stay_in_eur(self):
-        self.assertEqual(display.selected_profile({}, {}), 'de_eur')
-        self.assertEqual(display.currency_for('de_eur'), 'EUR')
+    def test_existing_entries_keep_defaults_and_profiles(self):
+        for data, expected in (({}, ('de', 'EUR')),
+                               ({'display_profile': 'de_eur'}, ('de', 'EUR')),
+                               ({'display_profile': 'pl_pln'}, ('pl', 'PLN'))):
+            with self.subTest(data=data):
+                self.assertEqual(display.selected_display(data, {}), expected)
+
+    def test_legacy_options_override_initial_profile(self):
+        self.assertEqual(display.selected_display({'display_profile': 'de_eur'},
+                         {'display_profile': 'pl_pln'}), ('pl', 'PLN'))
+        self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
+                         {'display_profile': 'de_eur'}), ('de', 'EUR'))
+
+    def test_all_four_combinations(self):
+        for language in ('de', 'pl'):
+            for currency in ('EUR', 'PLN'):
+                with self.subTest(language=language, currency=currency):
+                    self.assertEqual(display.selected_display(
+                        {'language': language, 'currency': currency}, {}), (language, currency))
+
+    def test_new_options_override_legacy_profile_independently(self):
+        self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
+                         {'language': 'de'}), ('de', 'PLN'))
+        self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
+                         {'currency': 'EUR'}), ('pl', 'EUR'))
+        self.assertEqual(display.selected_display({'language': 'de', 'currency': 'PLN'},
+                         {'language': 'pl'}), ('pl', 'PLN'))
+        self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
+                         {'language': 'de', 'currency': 'EUR'}), ('de', 'EUR'))
+
+    def test_new_data_survives_old_profile_in_options(self):
+        self.assertEqual(display.selected_display({'language': 'de', 'currency': 'EUR'},
+                         {'display_profile': 'pl_pln'}), ('de', 'EUR'))
+
+    def test_invalid_settings_use_safe_legacy_defaults(self):
+        self.assertEqual(display.selected_display({}, {'display_profile': 'invalid'}), ('de', 'EUR'))
+        self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
+                         {'language': 'invalid', 'currency': 'invalid'}), ('pl', 'PLN'))
+
+    def test_identity_depends_on_currency_only(self):
         self.assertEqual(display.price_unique_key('diesel', 'EUR'), 'diesel')
-
-    def test_options_override_initial_selection(self):
-        self.assertEqual(display.selected_profile({'display_profile': 'de_eur'}, {'display_profile': 'pl_pln'}), 'pl_pln')
-        self.assertEqual(display.selected_profile({'display_profile': 'pl_pln'}, {'display_profile': 'de_eur'}), 'de_eur')
-
-    def test_invalid_saved_profile_falls_back_to_original_eur(self):
-        self.assertEqual(display.selected_profile({}, {'display_profile': 'invalid'}), 'de_eur')
-
-    def test_pln_has_separate_history_and_polish_names(self):
-        self.assertEqual(display.currency_for('pl_pln'), 'PLN')
         self.assertEqual(display.price_unique_key('diesel', 'PLN'), 'diesel_pln')
-        self.assertEqual(display.NAMES['pl_pln']['diesel'], 'Olej napędowy')
+        self.assertEqual(display.NAMES['pl']['diesel'], 'Olej napędowy')
 
 
 if __name__ == '__main__':
