@@ -2,7 +2,7 @@
 from homeassistant.const import Platform
 from .coordinator import FuelCoordinator
 
-PLATFORMS = [Platform.SENSOR]
+PLATFORMS = [Platform.SENSOR, Platform.BINARY_SENSOR]
 
 async def async_setup_entry(hass, entry):
     coordinator = FuelCoordinator(hass, entry)

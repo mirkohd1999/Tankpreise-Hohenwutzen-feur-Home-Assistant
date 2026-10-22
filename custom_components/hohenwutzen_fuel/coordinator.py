@@ -7,7 +7,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.util import dt as dt_util
 from .const import NAME, SOURCE_URL, UPDATE_MINUTES
-from .parser import parse_prices, PriceParseError
+from .parser import parse_prices, parse_station_open, PriceParseError
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -26,4 +26,5 @@ class FuelCoordinator(DataUpdateCoordinator):
                 prices = parse_prices(html)
         except (aiohttp.ClientError, TimeoutError, UnicodeError, PriceParseError) as err:
             raise UpdateFailed(f"Kraftstoffpreise konnten nicht geladen werden: {err}") from err
-        return {"prices": prices, "fetched_at": dt_util.utcnow()}
+        return {"prices": prices, "station_open": parse_station_open(html),
+                "fetched_at": dt_util.utcnow()}
