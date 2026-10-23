@@ -67,8 +67,8 @@ class ExchangeTests(unittest.TestCase):
         self.assertEqual(display.selected_display({'display_profile': 'pl_pln'},
                          {'display_profile': 'de_eur'}), ('de', 'EUR'))
 
-    def test_all_four_combinations(self):
-        for language in ('de', 'pl'):
+    def test_all_six_combinations(self):
+        for language in ('de', 'pl', 'en'):
             for currency in ('EUR', 'PLN'):
                 with self.subTest(language=language, currency=currency):
                     self.assertEqual(display.selected_display(

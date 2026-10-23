@@ -52,7 +52,7 @@ class SensorDisplayTests(unittest.TestCase):
                 sys.modules[spec.name] = loaded[name]
                 spec.loader.exec_module(loaded[name])
             identities = {}
-            for language in ('de', 'pl'):
+            for language in ('de', 'pl', 'en'):
                 for currency in ('EUR', 'PLN'):
                     with self.subTest(language=language, currency=currency):
                         coordinator = SimpleNamespace(language=language, currency=currency,
@@ -62,11 +62,19 @@ class SensorDisplayTests(unittest.TestCase):
                                   'exchange_rate': loaded['exchange'].ExchangeRate(4.25, '2026-10-21')})
                         price = loaded['sensor'].FuelSensor(coordinator, 'super_e10')
                         station = loaded['binary_sensor'].StationOpenSensor(coordinator)
-                        self.assertEqual(price._attr_name, 'Super E10' if language == 'de' else 'Benzyna 95 (E10)')
+                        self.assertEqual(price._attr_name, 'Benzyna 95 (E10)' if language == 'pl' else 'Super E10')
                         self.assertEqual(price._attr_native_unit_of_measurement, f'{currency}/L')
                         self.assertEqual(price.native_value, 1.52 if currency == 'EUR' else 6.46)
-                        self.assertEqual(station._attr_name, 'Tankstelle' if language == 'de' else 'Stacja paliw')
+                        self.assertEqual(station._attr_name, {'de': 'Tankstelle', 'pl': 'Stacja paliw', 'en': 'Fuel station'}[language])
                         self.assertTrue(station.is_on)
+                        timestamp = loaded['sensor'].FetchTimestamp(coordinator)
+                        self.assertEqual(timestamp._attr_name, {
+                            'de': 'Letzter erfolgreicher Abruf', 'pl': 'Ostatni udany odczyt',
+                            'en': 'Last successful fetch'}[language])
+                        self.assertEqual(timestamp._attr_unique_id, 'hohenwutzen_fuel_last_fetch')
+                        if currency == 'PLN':
+                            self.assertEqual(price.extra_state_attributes['note'],
+                                             loaded['display'].CONVERSION_NOTES[language])
                         if currency in identities:
                             self.assertEqual(price._attr_unique_id, identities[currency])
                         identities[currency] = price._attr_unique_id
