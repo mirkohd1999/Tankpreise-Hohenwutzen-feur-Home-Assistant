@@ -39,20 +39,20 @@ Den Ordner `custom_components/hohenwutzen_fuel` aus dem Repository nach `/config
 
 ## Sprache und Währung
 
-Ab Version **1.2.0** lassen sich Sprache und Währung unabhängig auswählen:
+Ab Version **1.3.0** lassen sich Sprache und Währung unabhängig auswählen:
 
 | Einstellung | Auswahl |
 |---|---|
-| Sprache der Sensoren | Deutsch oder Polski |
+| Sprache der Sensoren | Deutsch, Polski oder English |
 | Preiswährung | Euro (EUR/L) oder Złoty (PLN/L) |
 
-Alle vier Kombinationen sind möglich, zum Beispiel deutsche Sensornamen mit Złoty-Preisen oder polnische Sensornamen mit Europreisen.
+Alle sechs Kombinationen sind möglich, zum Beispiel deutsche Sensornamen mit Złoty-Preisen oder polnische Sensornamen mit Europreisen.
 
 **Umstellen:** Einstellungen → Geräte & Dienste → Tankpreise Hohenwutzen → **Konfigurieren**. Nach dem Speichern lädt die Integration automatisch neu. Die bisherige Auswahl aus Version 1.1.0 wird automatisch übernommen; ältere Installationen bleiben bei Deutsch/Euro. Eine Änderung nur der Sprache behält dieselben Preisentitäten und Verläufe.
 
 EUR und PLN verwenden getrennte Preisentitäten, damit ihre Verläufe nicht vermischt werden. Nach einem Wechsel die neuen Sensoren im Dashboard und in Automationen auswählen. Alte Preisentitäten können als nicht verfügbar bestehen bleiben; beim Zurückwechseln auf EUR werden die bisherigen Sensoren wiederverwendet.
 
-Die Sprache der Home-Assistant-Oberfläche und von **Geöffnet/Geschlossen** folgt weiterhin dem persönlichen Benutzerprofil. Einrichtungsdialoge sind auf Deutsch, Polnisch und Englisch verfügbar.
+Die Sprache der Home-Assistant-Oberfläche und von **Geöffnet/Geschlossen** folgt weiterhin dem persönlichen Benutzerprofil. Einrichtungsdialoge sind auf Deutsch, Polnisch und Englisch verfügbar. Die Auswahl **English** übersetzt die Sensornamen; deine Home-Assistant-Oberfläche behält ihre persönliche Spracheinstellung.
 
 ### Automatische PLN-Umrechnung
 
@@ -74,7 +74,7 @@ Der Status beruht auf der Webseite; dort nicht veröffentlichte kurzfristige Sch
 
 ## Projektstatus und Hilfe
 
-**Version 1.2.0:** Getrennte Auswahl von Sprache und Währung mit automatischer Übernahme bisheriger Einstellungen. Offline-Tests prüfen alle vier Kombinationen, Sensornamen, Währungswerte und stabile Entitäts-IDs. Der Betrieb von Version 1.1.0 wurde vom Nutzer als funktionierend zurückgemeldet; die getrennte Auswahl aus 1.2.0 ist noch nicht in einer echten Home-Assistant-Installation geprüft.
+**Version 1.3.0:** Englisch als dritte Sensorsprache, unabhängig von der Währung. Bestehende Einstellungen bleiben erhalten. Offline-Tests prüfen alle sechs Sprach-/Währungskombinationen, Sensornamen, Währungswerte und stabile Entitäts-IDs. Der Betrieb von Version 1.1.0 wurde vom Nutzer als funktionierend zurückgemeldet; die Erweiterung aus 1.3.0 ist noch nicht in einer echten Home-Assistant-Installation geprüft.
 
 Fehler oder Ideen? Bitte ein [GitHub Issue](https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant/issues) erstellen.
 

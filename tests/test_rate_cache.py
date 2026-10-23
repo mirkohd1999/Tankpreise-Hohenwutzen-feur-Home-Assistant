@@ -106,7 +106,7 @@ class RateCacheTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(data['prices']['diesel'], 1.83)
 
     async def test_language_does_not_select_currency_or_nbp_requests(self):
-        for language in ('de', 'pl'):
+        for language in ('de', 'pl', 'en'):
             for currency in ('EUR', 'PLN'):
                 with self.subTest(language=language, currency=currency):
                     c = self.cls(None, SimpleNamespace(

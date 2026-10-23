@@ -3,7 +3,7 @@ from homeassistant.components.sensor import SensorEntity, SensorDeviceClass
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import DOMAIN, NAME, SOURCE_URL
-from .display import NAMES, price_unique_key
+from .display import CONVERSION_NOTES, NAMES, price_unique_key
 from .exchange import NBP_URL, convert_price
 
 FUELS = ("super_e10", "super_plus", "diesel")
@@ -67,9 +67,7 @@ class FuelSensor(BaseSensor):
                           "exchange_rate_source": NBP_URL,
                           "pln_per_eur": quote.pln_per_eur if quote else None,
                           "exchange_rate_date": quote.effective_date if quote else None,
-                          "note": ("Umrechnung zum NBP-Mittelkurs; kein PLN-Zahlpreis der Tankstelle."
-                                   if self.coordinator.language == "de" else
-                                   "Przeliczenie według średniego kursu NBP; nie jest to cena stacji w PLN.")})
+                          "note": CONVERSION_NOTES[self.coordinator.language]})
         else:
             # Preserve the original German attributes for existing automations.
             attrs.update({"quelle": SOURCE_URL,
