@@ -1,5 +1,7 @@
 # ⛽ Tankpreise Hohenwutzen für Home Assistant
 
+[![Open HACS Repository on My Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mirkohd1999&repository=Tankpreise-Hohenwutzen-feur-Home-Assistant&category=integration)
+
 Die Kraftstoffpreise der Tankstelle am **Polenmarkt Hohenwutzen** direkt in Home Assistant – automatisch alle **5 Minuten**, wahlweise in **Euro oder Złoty**.
 
 **Ab Home Assistant 2025.12.0 · Einrichtung über die Oberfläche · Kein Konto oder API-Schlüssel nötig**
@@ -20,16 +22,10 @@ Alle Sensoren lassen sich in Dashboards und Automationen verwenden. Zusätzliche
 
 ### Über HACS
 
-1. In HACS **Benutzerdefinierte Repositories** öffnen.
-2. Diese Adresse mit dem Typ **Integration** hinzufügen:
-
-   ```text
-   https://github.com/mirkohd1999/Tankpreise-Hohenwutzen-feur-Home-Assistant
-   ```
-
-3. **Tankpreise Hohenwutzen** suchen und die neueste veröffentlichte Version herunterladen.
-4. Home Assistant neu starten.
-5. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **Tankpreise Hohenwutzen** suchen und Sprache und Währung wählen.
+1. Den Button **Open HACS Repository** oben anklicken oder in HACS nach **Tankpreise Hohenwutzen** suchen.
+2. Die neueste veröffentlichte Version herunterladen.
+3. Home Assistant neu starten.
+4. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **Tankpreise Hohenwutzen** suchen und Sprache und Währung wählen.
 
 ### Manuell
 
